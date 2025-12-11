@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
 import { Box, Typography, Paper, Card, CardContent, IconButton, useTheme } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { format, addMinutes } from 'date-fns';
+import { format } from 'date-fns';
 import api from '../api/axios';
 import CreateTodoModal from '../components/CreateTodoModal';
 
@@ -221,7 +221,10 @@ const AgileBoard: React.FC = () => {
 
                                 {task.due_date && (
                                   <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block' }}>
-                                    Due: {format(addMinutes(new Date(task.due_date), new Date(task.due_date).getTimezoneOffset()), 'M/d/yyyy')}
+                                    Due: {(() => {
+                                      const [y, m, d] = task.due_date.split('T')[0].split('-').map(Number);
+                                      return format(new Date(y, m - 1, d), 'M/d/yyyy');
+                                    })()}
                                   </Typography>
                                 )}
                               </CardContent>

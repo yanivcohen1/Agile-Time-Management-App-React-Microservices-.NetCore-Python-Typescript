@@ -6,6 +6,7 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { format } from 'date-fns';
 import api from '../api/axios';
 import { useSnackbar } from 'notistack';
 
@@ -38,7 +39,12 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ open, onClose, onTodo
         setTitle(todo.title);
         setDescription(todo.description || '');
         setStatus(todo.status);
-        setDueDate(todo.due_date ? new Date(todo.due_date) : null);
+        if (todo.due_date) {
+          const [y, m, d] = todo.due_date.split('T')[0].split('-').map(Number);
+          setDueDate(new Date(y, m - 1, d));
+        } else {
+          setDueDate(null);
+        }
       } else {
         setTitle('');
         setDescription('');
@@ -55,7 +61,7 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ open, onClose, onTodo
           title,
           description,
           status,
-          due_date: dueDate ? dueDate.toISOString() : null
+          due_date: dueDate ? format(dueDate, 'yyyy-MM-dd') : null
         });
         enqueueSnackbar('Todo updated successfully', { variant: 'success' });
       } else {
@@ -63,7 +69,7 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ open, onClose, onTodo
           title,
           description,
           status,
-          due_date: dueDate ? dueDate.toISOString() : null
+          due_date: dueDate ? format(dueDate, 'yyyy-MM-dd') : null
         });
         enqueueSnackbar('Todo created successfully', { variant: 'success' });
       }

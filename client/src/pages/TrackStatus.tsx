@@ -9,7 +9,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import api from '../api/axios';
-import { format, addMinutes } from 'date-fns';
 import CreateTodoModal from '../components/CreateTodoModal';
 import { useSnackbar } from 'notistack';
 
@@ -184,7 +183,7 @@ const TrackStatus: React.FC = () => {
               >
                 <TableCell>{todo.title}</TableCell>
                 <TableCell>{todo.status}</TableCell>
-                <TableCell>{todo.due_date ? format(addMinutes(new Date(todo.due_date), new Date(todo.due_date).getTimezoneOffset()), 'yyyy-MM-dd') : '-'}</TableCell>
+                <TableCell>{todo.due_date ? todo.due_date.split('T')[0] : '-'}</TableCell>
                 <TableCell>
                   <IconButton size="small" color="primary" onClick={() => handleEditClick(todo)}>
                     <Edit />
