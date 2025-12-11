@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
 import { Box, Typography, Paper, Card, CardContent, IconButton, useTheme } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { format } from 'date-fns';
+import { format, addMinutes } from 'date-fns';
 import api from '../api/axios';
 import CreateTodoModal from '../components/CreateTodoModal';
 
@@ -56,6 +56,15 @@ const AgileBoard: React.FC = () => {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchTodos();
+
+    const handleTodoCreated = () => {
+      fetchTodos();
+    };
+
+    window.addEventListener('todo-created', handleTodoCreated);
+    return () => {
+      window.removeEventListener('todo-created', handleTodoCreated);
+    };
   }, [fetchTodos]);
 
   const handleEditClick = (todo: Todo) => {
@@ -212,7 +221,7 @@ const AgileBoard: React.FC = () => {
 
                                 {task.due_date && (
                                   <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block' }}>
-                                    Due: {format(new Date(task.due_date), 'M/d/yyyy')}
+                                    Due: {format(addMinutes(new Date(task.due_date), new Date(task.due_date).getTimezoneOffset()), 'M/d/yyyy')}
                                   </Typography>
                                 )}
                               </CardContent>
