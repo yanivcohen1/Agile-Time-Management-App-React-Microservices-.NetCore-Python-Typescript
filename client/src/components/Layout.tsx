@@ -4,7 +4,7 @@ import {
   IconButton, Box, useMediaQuery, useTheme, Divider, ListItemButton, Tooltip
 } from '@mui/material';
 import { 
-  Menu as MenuIcon, Dashboard, ListAlt, ViewKanban, Logout, Add, Brightness4, Brightness7 
+  Menu as MenuIcon, Dashboard, ListAlt, ViewKanban, Logout, Add, Brightness4, Brightness7, CheckCircleOutline 
 } from '@mui/icons-material';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -97,9 +97,19 @@ const Layout: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
+          <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+            <CheckCircleOutline sx={{ color: '#2196f3', mr: 1 }} />
+            <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
+              Agile Tasks
+            </Typography>
+          </Box>
+
+          <Divider orientation="vertical" flexItem sx={{ mr: 2, my: 2, borderColor: 'rgba(255, 255, 255, 0.3)' }} />
+          
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             {user?.full_name} ({user?.role})
           </Typography>
+
           <Tooltip title="Toggle light/dark theme">
             <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
               {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
