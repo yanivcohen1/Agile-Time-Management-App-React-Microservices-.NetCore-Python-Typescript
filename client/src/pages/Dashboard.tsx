@@ -75,48 +75,54 @@ const Dashboard: React.FC = () => {
 
       <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>Dates by workload</Typography>
       
-      {/* Chart */}
-      {workloadStats.length > 0 && (
-        <Paper variant="outlined" sx={{ p: 2, mb: 4, height: 400 }}>
-             <BarChart
-                dataset={workloadStats}
-                xAxis={[{ scaleType: 'band', dataKey: '_id', valueFormatter: (v) => new Date(v).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) }]}
-                series={[
-                    { dataKey: 'backlog', label: 'Backlog', stack: 'total', color: theme.palette.grey[500] },
-                    { dataKey: 'pending', label: 'Pending', stack: 'total', color: theme.palette.warning.main },
-                    { dataKey: 'in_progress', label: 'In Progress', stack: 'total', color: theme.palette.info.main },
-                    { dataKey: 'completed', label: 'Completed', stack: 'total', color: theme.palette.success.main },
-                ]}
-                height={350}
-                slotProps={{ legend: { hidden: false } }}
-                margin={{ left: 40, right: 40, top: 40, bottom: 40 }}
-             />
-        </Paper>
-      )}
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
+          {/* Image 2: Workload List */}
+          <Stack spacing={2}>
+            {workloadStats.map((stat) => (
+              <Paper key={stat._id} variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{formatDate(stat._id)}</Typography>
+                    <Typography variant="body2" color="textSecondary">{stat.total} task{stat.total !== 1 ? 's' : ''}</Typography>
+                  </Box>
+                  <Chip label={`${stat.total} total`} variant="filled" />
+                </Box>
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                  <Chip label={`Backlog ${stat.backlog}`} variant="outlined" />
+                  <Chip label={`Pending ${stat.pending}`} variant="outlined" sx={{ color: 'warning.main', borderColor: 'warning.main' }} />
+                  <Chip label={`In progress ${stat.in_progress}`} variant="outlined" sx={{ color: 'info.main', borderColor: 'info.main' }} />
+                  <Chip label={`Completed ${stat.completed}`} variant="outlined" sx={{ color: 'success.main', borderColor: 'success.main' }} />
+                </Box>
+              </Paper>
+            ))}
+            {workloadStats.length === 0 && (
+              <Typography color="textSecondary">No workload data available</Typography>
+            )}
+          </Stack>
+        </Grid>
 
-      {/* Image 2: Workload List */}
-      <Stack spacing={2}>
-        {workloadStats.map((stat) => (
-          <Paper key={stat._id} variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-              <Box>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{formatDate(stat._id)}</Typography>
-                <Typography variant="body2" color="textSecondary">{stat.total} task{stat.total !== 1 ? 's' : ''}</Typography>
-              </Box>
-              <Chip label={`${stat.total} total`} variant="filled" />
-            </Box>
-            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-              <Chip label={`Backlog ${stat.backlog}`} variant="outlined" />
-              <Chip label={`Pending ${stat.pending}`} variant="outlined" sx={{ color: 'warning.main', borderColor: 'warning.main' }} />
-              <Chip label={`In progress ${stat.in_progress}`} variant="outlined" sx={{ color: 'info.main', borderColor: 'info.main' }} />
-              <Chip label={`Completed ${stat.completed}`} variant="outlined" sx={{ color: 'success.main', borderColor: 'success.main' }} />
-            </Box>
-          </Paper>
-        ))}
-        {workloadStats.length === 0 && (
-          <Typography color="textSecondary">No workload data available</Typography>
-        )}
-      </Stack>
+        <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
+          {/* Chart */}
+          {workloadStats.length > 0 && (
+            <Paper variant="outlined" sx={{ p: 2, height: 400 }}>
+                <BarChart
+                    dataset={workloadStats}
+                    xAxis={[{ scaleType: 'band', dataKey: '_id', valueFormatter: (v) => new Date(v).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) }]}
+                    series={[
+                        { dataKey: 'backlog', label: 'Backlog', stack: 'total', color: theme.palette.grey[500] },
+                        { dataKey: 'pending', label: 'Pending', stack: 'total', color: theme.palette.warning.main },
+                        { dataKey: 'in_progress', label: 'In Progress', stack: 'total', color: theme.palette.info.main },
+                        { dataKey: 'completed', label: 'Completed', stack: 'total', color: theme.palette.success.main },
+                    ]}
+                    height={350}
+                    slotProps={{ legend: { hidden: false } }}
+                    margin={{ left: 40, right: 40, top: 40, bottom: 40 }}
+                />
+            </Paper>
+          )}
+        </Grid>
+      </Grid>
     </Box>
   );
 };
