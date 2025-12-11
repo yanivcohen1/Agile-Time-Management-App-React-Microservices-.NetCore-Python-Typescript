@@ -168,21 +168,16 @@ All scripts are run from the `client` directory using `pnpm <script-name>`.
 - **Frontend**: Environment variables in `.env` (if applicable) and `vite.config.ts`.
 
 ## Main Board
-<img width="2282" height="1606" alt="image" src="https://github.com/user-attachments/assets/d5bb8687-b1a3-4d95-bf44-806b837bd4bb" />
+<img width="2273" height="1587" alt="image" src="https://github.com/user-attachments/assets/7c5ce500-2ea9-4da5-a5f8-02f64c1a195f" />
 
 ## Track Status
-<img width="1884" height="1648" alt="image" src="https://github.com/user-attachments/assets/1a80ad00-885e-4e26-92e1-bd0a65a49902" />
+<img width="2280" height="1557" alt="image" src="https://github.com/user-attachments/assets/f38b4fcd-ecb2-4268-89c3-f5163ee48c6f" />
 
 ## Agile Board
-<img width="2346" height="1543" alt="image" src="https://github.com/user-attachments/assets/04b885b3-fa01-4d70-a756-c8cb4cc38413" />
+<img width="2598" height="1494" alt="image" src="https://github.com/user-attachments/assets/8d395445-01e9-4946-bad5-afb05dae0561" />
 
 ## Ligth mode
-<img width="2318" height="1538" alt="image" src="https://github.com/user-attachments/assets/46028482-98d9-4a9c-bbec-796ad8834afe" />
+<img width="2276" height="1709" alt="image" src="https://github.com/user-attachments/assets/bcf05515-a81a-46f4-9ffa-a53091aec02a" />
 
 ## Mobile mode
-<img width="1053" height="1779" alt="image" src="https://github.com/user-attachments/assets/1095919d-d44a-4701-b973-e4a65c5b1330" />
-
-
-
-
-
+<img width="1034" height="1888" alt="image" src="https://github.com/user-attachments/assets/7ed3a206-3d2f-491a-bc39-8593fdd4eb3e" />
