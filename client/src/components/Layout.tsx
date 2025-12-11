@@ -94,7 +94,7 @@ const Layout: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <LoadingBar color={theme.palette.primary.main} progress={progress} onLoaderFinished={() => setProgress(0)} />
+      <LoadingBar color="#ff0000" progress={progress} onLoaderFinished={() => setProgress(0)} />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <IconButton
