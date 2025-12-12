@@ -67,24 +67,17 @@ Each service has its own detailed setup instructions. Please refer to the respec
 *   **Navigation**: Enhanced sidebar navigation with active state logic and breadcrumbs.
 *   **Routing**: Improved deep-linking capabilities for "About Me" and other nested pages.
 
-
-
-## Main Page
-
-<img width="1692" height="1496" alt="image" src="https://github.com/user-attachments/assets/54f149ee-3565-4e59-bc7a-5145bd1d9bf9" />
+## Main Board
+<img width="2273" height="1587" alt="image" src="https://github.com/user-attachments/assets/7c5ce500-2ea9-4da5-a5f8-02f64c1a195f" />
 
 ## Track Status
+<img width="2280" height="1557" alt="image" src="https://github.com/user-attachments/assets/f38b4fcd-ecb2-4268-89c3-f5163ee48c6f" />
 
-<img width="2262" height="1440" alt="image" src="https://github.com/user-attachments/assets/edb01bb2-1155-4b27-9ff3-44f66a0bd4a6" />
-
-## Board page
-
-<img width="2089" height="1387" alt="image" src="https://github.com/user-attachments/assets/547d7f14-a20c-4ea7-abe0-4866011828ef" />
+## Agile Board
+<img width="2598" height="1494" alt="image" src="https://github.com/user-attachments/assets/8d395445-01e9-4946-bad5-afb05dae0561" />
 
 ## Ligth mode
-
-<img width="2275" height="1438" alt="image" src="https://github.com/user-attachments/assets/62f68e96-2479-4454-8793-2ceaaca71be9" />
+<img width="2276" height="1709" alt="image" src="https://github.com/user-attachments/assets/bcf05515-a81a-46f4-9ffa-a53091aec02a" />
 
 ## Mobile mode
-
-<img width="1118" height="1351" alt="image" src="https://github.com/user-attachments/assets/2ade3bf7-80fa-46b7-8980-40e415415040" />
+<img width="1034" height="1888" alt="image" src="https://github.com/user-attachments/assets/7ed3a206-3d2f-491a-bc39-8593fdd4eb3e" />
