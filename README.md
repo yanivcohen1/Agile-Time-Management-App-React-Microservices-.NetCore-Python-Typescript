@@ -71,7 +71,7 @@ Each service has its own detailed setup instructions. Please refer to the respec
 <img width="2273" height="1587" alt="image" src="https://github.com/user-attachments/assets/7c5ce500-2ea9-4da5-a5f8-02f64c1a195f" />
 
 ## Track Status
-<img width="2280" height="1557" alt="image" src="https://github.com/user-attachments/assets/f38b4fcd-ecb2-4268-89c3-f5163ee48c6f" />
+<img width="1958" height="1527" alt="image" src="https://github.com/user-attachments/assets/7767e30b-7f4e-4bf9-9658-7a7f7480abd0" />
 
 ## Agile Board
 <img width="2598" height="1494" alt="image" src="https://github.com/user-attachments/assets/8d395445-01e9-4946-bad5-afb05dae0561" />
