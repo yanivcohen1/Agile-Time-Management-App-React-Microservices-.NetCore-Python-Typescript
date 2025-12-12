@@ -80,6 +80,8 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ open, onClose, onTodo
         enqueueSnackbar('Todo created successfully', { variant: 'success' });
       }
       
+      window.dispatchEvent(new Event('todo-created'));
+      
       if (onSave) onSave();
       if (onTodoCreated) onTodoCreated();
       handleClose();

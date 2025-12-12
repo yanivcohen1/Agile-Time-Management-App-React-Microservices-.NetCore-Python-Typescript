@@ -38,6 +38,16 @@ const Dashboard: React.FC = () => {
       }
     };
     fetchData();
+
+    const handleTodoCreated = () => {
+      fetchData();
+    };
+
+    window.addEventListener('todo-created', handleTodoCreated);
+
+    return () => {
+      window.removeEventListener('todo-created', handleTodoCreated);
+    };
   }, []);
 
   const formatDate = (dateStr: string) => {

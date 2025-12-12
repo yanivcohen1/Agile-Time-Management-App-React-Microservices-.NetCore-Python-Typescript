@@ -154,9 +154,6 @@ const Layout: React.FC = () => {
         onClose={() => setCreateModalOpen(false)} 
         onTodoCreated={() => {
             // Ideally trigger a refresh in the active view, but for now just close
-            // A global refresh context or event bus could be used, or just let the user navigate
-            // For E2E, we can verify the item appears after navigation or reload
-            window.dispatchEvent(new Event('todo-created')); // Simple event for now if needed
         }}
       />
     </Box>
