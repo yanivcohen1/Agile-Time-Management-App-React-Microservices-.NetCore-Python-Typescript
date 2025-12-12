@@ -47,3 +47,53 @@ dotnet test
 *   **Role-Based Access**: Admin and User roles.
 *   **Todo Management**: CRUD operations for Todos (linked to Users).
 *   **Health Checks**: /health endpoint.
+
+## 📂 Project Structure
+
+```text
+backend_netCore_service/
+├── AuthApi/                        # Main Web API project
+│   ├── Controllers/                # API Controllers
+│   │   ├── AuthController.cs       # Authentication endpoints
+│   │   └── TodosController.cs      # Todo management endpoints
+│   ├── Migrations/                 # EF Core migrations
+│   ├── Models/                     # Data models and DTOs
+│   │   ├── ApplicationUser.cs      # User entity
+│   │   ├── AuthResponse.cs         # Auth response DTO
+│   │   ├── LoginRequest.cs         # Login request DTO
+│   │   ├── Todo.cs                 # Todo entity
+│   │   ├── TodoDtos.cs             # Todo DTOs
+│   │   └── TodoUserLink.cs         # User-Todo relationship
+│   ├── Options/                    # Configuration options
+│   │   └── JwtOptions.cs           # JWT settings class
+│   ├── Properties/                 # Project properties
+│   │   └── launchSettings.json     # Launch profiles
+│   ├── Services/                   # Business logic services
+│   │   ├── DatabaseUserService.cs  # DB-based user service
+│   │   ├── InMemoryUserService.cs  # In-memory user service (dev)
+│   │   ├── ITodoService.cs         # Todo service interface
+│   │   ├── ITokenService.cs        # Token service interface
+│   │   ├── IUserService.cs         # User service interface
+│   │   ├── MongoTodoService.cs     # MongoDB implementation of Todo service
+│   │   ├── MongoUserService.cs     # MongoDB implementation of User service
+│   │   └── TokenService.cs         # JWT generation service
+│   ├── appsettings.Development.json # Dev environment settings (JSON)
+│   ├── appsettings.json            # Base settings (JSON)
+│   ├── AuthApi.csproj              # Project file
+│   ├── AuthApi.http                # HTTP file for testing endpoints
+│   ├── AuthDbContext.cs            # EF Core Database Context
+│   ├── dev.appsettings.yaml        # Dev environment settings (YAML)
+│   ├── prod.appsettings.yaml       # Prod environment settings (YAML)
+│   ├── Program.cs                  # Application entry point & DI setup
+│   └── SeedData.cs                 # Data seeding logic
+├── AuthApi.Tests/                  # Integration tests project
+│   ├── AuthApi.Tests.csproj        # Test project file
+│   ├── AuthFlowTests.cs            # Auth flow integration tests
+│   ├── CustomWebApplicationFactory.cs # Test server factory
+│   ├── HealthEndpointTests.cs      # Health check tests
+│   ├── TodoTests.cs                # Todo integration tests
+│   └── UnitTest1.cs                # Basic unit tests
+├── AuthSolution.sln                # Solution file
+├── login.json                      # Sample login payload
+└── README.md                       # Project documentation
+```

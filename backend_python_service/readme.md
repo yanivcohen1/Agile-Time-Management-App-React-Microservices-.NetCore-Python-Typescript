@@ -55,3 +55,28 @@ pytest
 
 ## ⚙️ Configuration
 Settings are loaded from config.dev.yaml (default) or config.prod.yaml.
+
+## 📂 Project Structure
+
+```text
+backend_python_service/
+├── app/                    # Application source code
+│   ├── routes/             # API route definitions
+│   ├── __init__.py         # Package initialization
+│   ├── auth.py             # Authentication logic and utilities
+│   ├── config.py           # Configuration loading and management
+│   ├── database.py         # Database connection and initialization
+│   ├── main.py             # Application entry point
+│   └── models.py           # Database models (Beanie/Pydantic)
+├── tests/                  # Test suite
+│   ├── conftest.py         # Pytest fixtures and configuration
+│   ├── test_api.py         # General API tests
+│   ├── test_check_users.py # User verification tests
+│   └── test_login.py       # Authentication tests
+├── config.dev.yaml         # Development configuration settings
+├── config.prod.yaml        # Production configuration settings
+├── pnpm-lock.yaml          # Lock file (if used in workspace)
+├── pytest.ini              # Pytest configuration
+├── readme.md               # Project documentation
+└── seed.py                 # Database seeding script
+```

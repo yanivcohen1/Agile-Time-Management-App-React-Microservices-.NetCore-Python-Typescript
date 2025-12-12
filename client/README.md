@@ -75,8 +75,36 @@ The application uses environment variables for configuration.
 
 ## 📂 Project Structure
 
-*   src/api: Axios setup and API calls.
-*   src/components: Reusable UI components.
-*   src/context: Global state (Auth, Theme).
-*   src/pages: Application pages (Login, Dashboard, etc.).
-*   src/theme.ts: MUI theme configuration.
+```text
+client/
+├── cypress/                # End-to-end testing configuration and tests
+│   ├── e2e/                # E2E test files
+│   ├── reports/            # Test reports
+│   ├── screenshots/        # Screenshots from failed tests
+│   └── support/            # Cypress support files and commands
+├── public/                 # Static assets served directly
+├── src/                    # Source code
+│   ├── api/                # API client and Axios configuration
+│   ├── assets/             # Static assets imported in code (images, fonts)
+│   ├── components/         # Reusable UI components
+│   ├── context/            # React Context providers (Auth, Theme)
+│   ├── pages/              # Page components (views)
+│   ├── App.css             # Main application styles
+│   ├── App.test.ts         # App component tests
+│   ├── App.tsx             # Main application component and routing
+│   ├── index.css           # Global CSS styles
+│   ├── main.tsx            # Application entry point
+│   ├── setupTests.ts       # Test setup configuration
+│   └── theme.ts            # Material UI theme configuration
+├── cypress.config.ts       # Cypress configuration
+├── eslint.config.js        # ESLint configuration
+├── index.html              # HTML entry point
+├── package.json            # Project dependencies and scripts
+├── pnpm-lock.yaml          # Lock file for dependencies
+├── pnpm-workspace.yaml     # Workspace configuration
+├── tsconfig.app.json       # TypeScript config for app
+├── tsconfig.json           # Base TypeScript config
+├── tsconfig.node.json      # TypeScript config for Node environment
+├── vite.config.ts          # Vite configuration
+└── vitest.config.ts        # Vitest configuration
+```
