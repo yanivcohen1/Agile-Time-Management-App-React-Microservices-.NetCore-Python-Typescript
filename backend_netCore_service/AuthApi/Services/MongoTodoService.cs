@@ -122,15 +122,13 @@ public class MongoTodoService : ITodoService
 
     public async Task<List<object>> GetWorkloadStatsAsync(string userId)
     {
-        // Note: Aggregation in C# driver is a bit verbose compared to raw JSON pipeline
-        // We'll use BsonDocument for the complex group stage to match Python's logic
-        
         var userObjectId = ObjectId.Parse(userId);
-        var match = new BsonDocument("$match", new BsonDocument 
-        { 
-            { "user.$id", userObjectId },
-            { "due_date", new BsonDocument("$ne", BsonNull.Value) } 
-        });
+        
+        // Use typed filter for match to ensure correct mapping of DBRef/UserLink
+        var matchFilter = Builders<Todo>.Filter.And(
+            Builders<Todo>.Filter.Eq(t => t.UserLink!.Id, userObjectId),
+            Builders<Todo>.Filter.Ne(t => t.DueDate, null)
+        );
 
         var group = new BsonDocument("$group", new BsonDocument
         {
@@ -144,9 +142,11 @@ public class MongoTodoService : ITodoService
 
         var sort = new BsonDocument("$sort", new BsonDocument("_id", 1));
 
-        var pipeline = new[] { match, group, sort };
-        
-        var result = await _todos.Aggregate<BsonDocument>(pipeline).ToListAsync();
+        var result = await _todos.Aggregate()
+            .Match(matchFilter)
+            .AppendStage<BsonDocument>(group)
+            .AppendStage<BsonDocument>(sort)
+            .ToListAsync();
         
         return result.Select(d => new
         {
