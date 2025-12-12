@@ -42,6 +42,18 @@ Executes the integration tests.
 dotnet test
 `
 
+## API Documentation with Swagger
+When running in development mode, the API provides interactive documentation via Swagger UI.
+
+### Accessing Swagger UI
+1. Start the application in development mode
+2. Open your browser and navigate to: `http://localhost:5000/swagger` or `https://localhost:5001/swagger`
+3. The Swagger UI will display all available endpoints with their parameters and response schemas
+4. You can test endpoints directly from the UI by clicking "Try it out"
+
+### OpenAPI Specification
+The OpenAPI JSON specification is available at: `http://localhost:5000/openapi/v1.json` or `https://localhost:5001/openapi/v1.json`
+
 ## 🔑 Key Features
 *   **JWT Authentication**: Secure token-based auth.
 *   **Role-Based Access**: Admin and User roles.
