@@ -139,11 +139,11 @@ const TrackStatus: React.FC = () => {
             label="Status"
             onChange={(e) => setStatusFilter(e.target.value)}
           >
-            <MenuItem value=""><em>None</em></MenuItem>
-            <MenuItem value="BACKLOG">Backlog</MenuItem>
-            <MenuItem value="PENDING">Pending</MenuItem>
-            <MenuItem value="IN_PROGRESS">In Progress</MenuItem>
-            <MenuItem value="COMPLETED">Completed</MenuItem>
+            <MenuItem value="" sx={{ '&:hover': { backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined } }}><em>None</em></MenuItem>
+            <MenuItem value="BACKLOG" sx={{ '&:hover': { backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined } }}>Backlog</MenuItem>
+            <MenuItem value="PENDING" sx={{ '&:hover': { backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined } }}>Pending</MenuItem>
+            <MenuItem value="IN_PROGRESS" sx={{ '&:hover': { backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined } }}>In Progress</MenuItem>
+            <MenuItem value="COMPLETED" sx={{ '&:hover': { backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined } }}>Completed</MenuItem>
           </Select>
         </FormControl>
         <LocalizationProvider dateAdapter={AdapterDateFns}>

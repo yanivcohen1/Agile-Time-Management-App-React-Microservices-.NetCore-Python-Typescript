@@ -52,7 +52,14 @@ const Layout: React.FC = () => {
       <Divider />
       <List>
         <ListItem disablePadding>
-           <ListItemButton onClick={() => setCreateModalOpen(true)}>
+           <ListItemButton 
+             onClick={() => setCreateModalOpen(true)}
+             sx={{
+               '&:hover': {
+                 backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined,
+               },
+             }}
+           >
             <ListItemIcon><Add /></ListItemIcon>
             <ListItemText primary="Create New" />
            </ListItemButton>
@@ -62,6 +69,9 @@ const Layout: React.FC = () => {
             <ListItemButton 
               selected={location.pathname === item.path}
               sx={{
+                '&:hover': {
+                  backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(0,0,0,0.08)' : undefined,
+                },
                 '&.Mui-selected': {
                   backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(25, 118, 210, 0.15)' : 'rgba(144, 202, 249, 0.16)',
                   '&:hover': {
