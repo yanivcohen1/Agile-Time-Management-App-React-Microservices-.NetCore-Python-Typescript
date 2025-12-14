@@ -60,6 +60,11 @@ public class TodosController : ControllerBase
             _ => "CreatedAt"
         };
 
+        if (dueDateEnd.HasValue)
+        {
+            dueDateEnd = dueDateEnd.Value.Date.AddDays(1).AddTicks(-1);
+        }
+
         var result = await _todoService.GetTodosAsync(GetCurrentUserId(), page, size, sortProperty, sortDesc, status, search, dueDateStart, dueDateEnd);
         return Ok(result);
     }
