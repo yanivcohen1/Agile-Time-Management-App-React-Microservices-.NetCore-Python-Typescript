@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { 
   AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, 
-  IconButton, Box, useMediaQuery, useTheme, Divider, ListItemButton, Tooltip
+  IconButton, Box, useMediaQuery, useTheme, Divider, ListItemButton, Tooltip, Collapse
 } from '@mui/material';
 import { 
-  Menu as MenuIcon, Dashboard, ListAlt, ViewKanban, Logout, Add, Brightness4, Brightness7, CheckCircleOutline 
+  Menu as MenuIcon, Dashboard, ListAlt, ViewKanban, Logout, Add, Brightness4, Brightness7, CheckCircleOutline,
+  ExpandLess, ExpandMore, AdminPanelSettings, Terminal
 } from '@mui/icons-material';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -22,6 +23,7 @@ const Layout: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
   const { logout, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -89,6 +91,32 @@ const Layout: React.FC = () => {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => setAdminOpen(!adminOpen)}>
+            <ListItemIcon>
+              <AdminPanelSettings />
+            </ListItemIcon>
+            <ListItemText primary="Admin" />
+            {adminOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+        </ListItem>
+        <Collapse in={adminOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton 
+              sx={{ pl: 4 }}
+              selected={location.pathname.startsWith('/admin')}
+              onClick={() => {
+                navigate('/admin/1');
+                if (isMobile) setMobileOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <Terminal />
+              </ListItemIcon>
+              <ListItemText primary="Console" />
+            </ListItemButton>
+          </List>
+        </Collapse>
       </List>
     </div>
   );
