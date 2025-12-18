@@ -158,8 +158,9 @@ const AgileBoard: React.FC = () => {
                   </Typography>
                   <Box 
                     sx={{ 
-                      bgcolor: getBadgeColor(columnId), 
-                      color: 'white', 
+                      color: getBadgeColor(columnId), 
+                      border: 1,
+                      borderColor: getBadgeColor(columnId),
                       borderRadius: '50%', 
                       width: 24, 
                       height: 24, 

@@ -222,9 +222,10 @@ const TrackStatus: React.FC = () => {
                   <Chip 
                     label={todo.status.replace('_', ' ')} 
                     size="small"
+                    variant="outlined"
                     sx={{ 
-                      bgcolor: getBadgeColor(todo.status),
-                      color: 'white',
+                      color: getBadgeColor(todo.status),
+                      borderColor: getBadgeColor(todo.status),
                       fontWeight: 'bold'
                     }} 
                   />
