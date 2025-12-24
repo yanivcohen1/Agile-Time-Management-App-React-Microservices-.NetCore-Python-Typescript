@@ -120,6 +120,40 @@ All commands are run from the `client/` directory using `pnpm`.
 | `test:cs` | `dotnet test` | Run .NET backend tests |
 | `lint:cs` | `dotnet format` | Format .NET backend code |
 
+## 🐛 Debugging
+
+This project includes VS Code debug configurations for all three components. Ensure you have the necessary VS Code extensions installed: Debugger for Chrome, Python, and C#.
+
+### Prerequisites
+- VS Code extensions: 
+  - Debugger for Chrome (for React debugging)
+  - Python (for Python backend debugging)
+  - C# (for .NET backend debugging)
+
+### Debug Configurations
+
+1. **Debug React App**:
+   - Starts the React development server on `http://localhost:5173`.
+   - Opens Chrome and attaches the debugger.
+   - Set breakpoints in `client/src/` files.
+
+2. **Debug Python Backend**:
+   - Launches the FastAPI server with auto-reload.
+   - Set breakpoints in `backend_python_service/app/` files.
+
+3. **Debug .NET Backend**:
+   - Builds and launches the ASP.NET Core API.
+   - Automatically opens the browser when the server is ready.
+   - Set breakpoints in `backend_netCore_service/AuthApi/` files.
+
+### How to Debug
+1. Open the project in VS Code.
+2. Go to the Run and Debug view (Ctrl+Shift+D).
+3. Select the desired configuration from the dropdown.
+4. Click the green play button or press F5 to start debugging.
+5. For React: Ensure the dev server is running (you can start it manually with `pnpm dev` in the client folder if needed).
+6. Set breakpoints in your code and interact with the application.
+
 ## ✨ Recent Updates
 
 *   **UI Overhaul**: Integrated PrimeReact components into the Material UI shell.
