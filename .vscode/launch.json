@@ -4,7 +4,7 @@
         {
             "name": "Debug React App",
             "type": "chrome",
-            "request": "launch",
+            "request": "launch",// first you need "pnpm dev" in cmd
             "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}/client/src",
             "sourceMapPathOverrides": {
