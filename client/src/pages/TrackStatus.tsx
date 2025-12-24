@@ -185,6 +185,7 @@ const TrackStatus: React.FC = () => {
                   Title
                 </TableSortLabel>
               </TableCell>
+              <TableCell>Description</TableCell>
               <TableCell>
                 <TableSortLabel
                   active={orderBy === 'status'}
@@ -218,6 +219,7 @@ const TrackStatus: React.FC = () => {
                 }}
               >
                 <TableCell>{todo.title}</TableCell>
+                <TableCell>{todo.description || '-'}</TableCell>
                 <TableCell>
                   <Chip 
                     label={todo.status.replace('_', ' ')} 
