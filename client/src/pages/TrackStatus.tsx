@@ -272,6 +272,7 @@ const TrackStatus: React.FC = () => {
       <Dialog
         open={deleteDialogOpen}
         onClose={() => setDeleteDialogOpen(false)}
+        sx={{ zIndex: 1600 }}
       >
         <DialogTitle>Confirm Delete</DialogTitle>
         <DialogContent>

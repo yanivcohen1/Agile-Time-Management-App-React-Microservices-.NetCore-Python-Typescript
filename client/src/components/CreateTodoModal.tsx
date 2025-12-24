@@ -101,7 +101,7 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ open, onClose, onTodo
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" sx={{ zIndex: 1600 }}>
       <DialogTitle>{todo ? 'Edit Todo' : 'Create New Todo'}</DialogTitle>
       <DialogContent>
         <TextField
