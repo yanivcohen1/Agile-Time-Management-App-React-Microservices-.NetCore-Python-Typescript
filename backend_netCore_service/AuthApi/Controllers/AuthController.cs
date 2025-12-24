@@ -46,6 +46,28 @@ public class AuthController : ControllerBase
         });
     }
 
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] RegisterRequest request)
+    {
+        try
+        {
+            var user = _userService.CreateUser(request.Email, request.FullName, request.Password, "user");
+            var tokenResponse = _tokenService.CreateToken(user);
+
+            return Ok(new
+            {
+                access_token = tokenResponse.Access_token,
+                token_type = "bearer",
+                role = user.Role,
+                name = user.FullName ?? user.Username
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { detail = ex.Message });
+        }
+    }
+
     [HttpGet("me")]
     [Authorize]
     public IActionResult GetMe()

@@ -72,4 +72,23 @@ public class MongoUserService : IUserService
         _users.Find(u => u.Username.ToLower() == username.ToLower()).FirstOrDefault();
 
     public IEnumerable<ApplicationUser> GetAllUsers() => _users.Find(_ => true).ToList();
+
+    public ApplicationUser CreateUser(string email, string fullName, string password, string role = "user")
+    {
+        if (_users.Find(u => u.Username.ToLower() == email.ToLower()).Any())
+        {
+            throw new InvalidOperationException("User with this email already exists");
+        }
+
+        var user = new ApplicationUser
+        {
+            Username = email,
+            FullName = fullName,
+            Role = role,
+            PasswordHash = _passwordHasher.HashPassword(null!, password)
+        };
+
+        _users.InsertOne(user);
+        return user;
+    }
 }

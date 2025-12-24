@@ -34,6 +34,25 @@ public class InMemoryUserService : IUserService
 
     public IEnumerable<ApplicationUser> GetAllUsers() => _users;
 
+    public ApplicationUser CreateUser(string email, string fullName, string password, string role = "user")
+    {
+        if (_users.Any(u => u.Username.Equals(email, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException("User with this email already exists");
+        }
+
+        var user = new ApplicationUser
+        {
+            Username = email,
+            FullName = fullName,
+            Role = role,
+            PasswordHash = _passwordHasher.HashPassword(null!, password)
+        };
+
+        _users.Add(user);
+        return user;
+    }
+
     private ApplicationUser CreateUser(string username, string password, string role)
     {
         var user = new ApplicationUser

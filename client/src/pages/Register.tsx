@@ -4,40 +4,38 @@ import { useAuth } from '../context/AuthContext';
 import api from '../api/axios';
 import { useNavigate, Link } from 'react-router-dom';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = async (e?: React.FormEvent) => {
+  const handleRegister = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setError('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
-      const formData = new FormData();
-      formData.append('username', email);
-      formData.append('password', password);
-      
-      const res = await api.post('/auth/login', formData);
-      login(res.data.access_token, { 
-        email: email, // from the form
-        full_name: res.data.name, 
-        role: res.data.role 
+      const res = await api.post('/auth/register', {
+        email,
+        full_name: fullName,
+        password
+      });
+      login(res.data.access_token, {
+        email: email,
+        full_name: res.data.name,
+        role: res.data.role
       });
       navigate('/');
     } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-      setError('Login failed: ' + (err.response?.data?.detail || 'Unknown error'));
-    }
-  };
-
-  const fillDemo = (role: 'admin' | 'user') => {
-    if (role === 'admin') {
-      setEmail('admin@todo.dev');
-      setPassword('ChangeMe123!');
-    } else {
-      setEmail('user@todo.dev');
-      setPassword('ChangeMe123!');
+      setError('Registration failed: ' + (err.response?.data?.detail || 'Unknown error'));
     }
   };
 
@@ -52,14 +50,14 @@ const Login: React.FC = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in
+          Create Account
         </Typography>
         {error && (
           <Typography color="error" sx={{ mt: 2 }}>
             {error}
           </Typography>
         )}
-        <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleRegister} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -76,13 +74,36 @@ const Login: React.FC = () => {
             margin="normal"
             required
             fullWidth
+            id="fullName"
+            label="Full Name"
+            name="fullName"
+            autoComplete="name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
             name="password"
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            id="confirmPassword"
+            autoComplete="new-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button
             type="submit"
@@ -90,21 +111,13 @@ const Login: React.FC = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Create Account
           </Button>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button fullWidth variant="outlined" onClick={() => fillDemo('user')}>
-              Demo User
-            </Button>
-            <Button fullWidth variant="outlined" onClick={() => fillDemo('admin')}>
-              Demo Admin
-            </Button>
-          </Box>
-          <Box sx={{ textAlign: 'center', mt: 2 }}>
+          <Box sx={{ textAlign: 'center' }}>
             <Typography variant="body2">
-              Need an account?{' '}
-              <Link to="/register" style={{ textDecoration: 'none' }}>
-                Create one
+              Already have an account?{' '}
+              <Link to="/login" style={{ textDecoration: 'none' }}>
+                Sign in
               </Link>
             </Typography>
           </Box>
@@ -114,4 +127,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

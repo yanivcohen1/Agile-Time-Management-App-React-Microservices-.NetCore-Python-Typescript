@@ -29,4 +29,25 @@ public class DatabaseUserService : IUserService
         _context.Users.SingleOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
 
     public IEnumerable<ApplicationUser> GetAllUsers() => _context.Users.ToList();
+
+    public ApplicationUser CreateUser(string email, string fullName, string password, string role = "user")
+    {
+        if (_context.Users.Any(u => u.Username.Equals(email, StringComparison.OrdinalIgnoreCase)))
+        {
+            throw new InvalidOperationException("User with this email already exists");
+        }
+
+        var user = new ApplicationUser
+        {
+            Username = email,
+            FullName = fullName,
+            Role = role,
+            PasswordHash = _passwordHasher.HashPassword(null!, password)
+        };
+
+        _context.Users.Add(user);
+        _context.SaveChanges();
+
+        return user;
+    }
 }
