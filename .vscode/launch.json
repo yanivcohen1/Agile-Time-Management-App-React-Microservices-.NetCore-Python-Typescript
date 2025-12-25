@@ -13,7 +13,7 @@
         },
         {
             "name": "Debug Python Backend",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
             "args": ["app.main:app", "--reload", "--port", "5000"],
