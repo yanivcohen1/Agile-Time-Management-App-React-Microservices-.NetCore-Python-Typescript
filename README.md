@@ -35,6 +35,7 @@ The solution consists of three main components:
 - **Authentication:** JWT-based authentication with role-protected endpoints.
 - **Configuration:** YAML-based settings (`dev.appsettings.yaml`, `prod.appsettings.yaml`).
 - **Migrations**:  MongoDB.Entities for database schema and data migrations Versioning (History) and Rollback (Restore/Down)
+- **Dependency Injection**: Autofac with DynamicProxy for AOP
 - **Testing:** xUnit + WebApplicationFactory (Integration Tests).
 
 ## 🚀 Technologies
