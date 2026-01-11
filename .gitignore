@@ -5,6 +5,6 @@ backend_python_service/__pycache__/
 .github/copilot-instructions.md
 plan.md
 planning instarctions.txt
-client/cypress/reports/
 README2.md
 client/coverage/
+client/cypress/screenshots/
