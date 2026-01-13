@@ -4,6 +4,8 @@ import { resolve } from "path";
 export default defineConfig({
   e2e: {
     baseUrl: 'http://localhost:5173',
+    specPattern: 'cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}',
+    excludeSpecPattern: ['src/**/*.test.{ts,tsx}', 'src/**/*.spec.{ts,tsx}'],
     reporter: process.env.CYPRESS_REPORTER || 'spec',
     reporterOptions: {
       reportDir: 'cypress/reports',
