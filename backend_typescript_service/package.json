@@ -1,0 +1,59 @@
+{
+  "name": "express-ts-app",
+  "version": "1.0.0",
+  "description": "Express server with TypeScript for user authorization route",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "seed:db": "cross-env NODE_ENV=development ts-node create-users.ts",
+    "lint": "tsc --noEmit && eslint src tests --ext .ts --max-warnings=0",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "express",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mikro-orm/core": "^5.9.8",
+    "@mikro-orm/migrations-mongodb": "^5.9.8",
+    "@mikro-orm/mongodb": "^5.9.8",
+    "@mikro-orm/reflection": "^5.9.8",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "js-yaml": "^4.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "5.8.1",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^5.9.8",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/mongodb": "^3.6.20",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^20.12.11",
+    "@types/supertest": "^2.0.16",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitest/coverage-v8": "^4.0.17",
+    "cross-env": "^10.1.0",
+    "eslint": "^8.57.0",
+    "mongodb-memory-server": "^10.2.3",
+    "supertest": "^6.3.4",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "~5.5.4",
+    "vitest": "^4.0.17"
+  }
+}

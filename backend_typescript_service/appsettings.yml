@@ -1,0 +1,11 @@
+Jwt:
+  Key: "your-super-secret-key-here-change-in-production"
+
+ConnectionStrings:
+  MongoConnection: "mongodb://localhost:27017/express_ts"
+
+Server:
+  Urls: "http://localhost:5000;https://localhost:5001"
+
+Cors:
+  AllowedOrigins: "http://localhost:3000,http://localhost:3001,http://localhost:5173"
