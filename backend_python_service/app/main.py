@@ -44,3 +44,6 @@ app.include_router(todos.router)
 @app.get("/")
 async def root():
     return {"message": "Welcome to Todo App API"}
+
+# for swagger API http://127.0.0.1:5000/docs#/
+# for fastAPI http://127.0.0.1:5000/redoc#/
