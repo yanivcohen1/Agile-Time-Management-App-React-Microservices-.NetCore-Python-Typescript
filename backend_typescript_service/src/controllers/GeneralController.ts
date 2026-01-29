@@ -21,7 +21,7 @@ export class GeneralController extends Controller {
   @Security('jwt')
   @Get('user/profile')
   public async getProfile(@Request() request: RequestWithUser): Promise<unknown> {
-    if (request.user.role !== 'user' && request.user.role !== 'admin') {
+    if (request.user.role !== 'user') {
       throw new HttpError(403, 'Access restricted to user role.');
     }
 

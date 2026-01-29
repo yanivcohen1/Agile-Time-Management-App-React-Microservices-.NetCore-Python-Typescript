@@ -47,7 +47,7 @@ export class AuthController extends Controller {
     const { username, password } = body;
 
     if (!username || !password) {
-       throw new HttpError(400, 'Both username and password must be provided.');
+       throw new HttpError(400, 'Both username and password must be provided as strings.');
     }
 
     const em = orm.em.fork();
@@ -101,6 +101,9 @@ export class AuthController extends Controller {
 
   @Post('verify')
   public async verify(@Body() body: VerifyRequestBody): Promise<{ valid: boolean; payload: unknown }> {
+    if (!body.token) {
+      throw new HttpError(400, 'Token is required in request body.');
+    }
     try {
       const decoded = jwt.verify(body.token, env.jwtSecret);
       return { valid: true, payload: decoded };

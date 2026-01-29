@@ -15,26 +15,27 @@ export async function expressAuthentication(
   if (securityName === 'jwt') {
     const authHeader = request.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new Error('No token provided');
+      throw new Error('Authorization header missing or malformed.');
     }
 
     const token = authHeader.split(' ')[1];
 
+    let decoded: TokenPayload;
     try {
-      const decoded = jwt.verify(token, env.jwtSecret) as TokenPayload;
-      
-      if (scopes && scopes.length > 0) {
-        if (!decoded.role || !scopes.includes(decoded.role)) {
-           throw new Error('Insufficient scope');
-        }
-      }
-
-      return {
-        username: decoded.sub,
-        role: decoded.role
-      };
+      decoded = jwt.verify(token, env.jwtSecret) as TokenPayload;
     } catch (err) {
       throw new Error('Invalid token');
     }
+
+    if (scopes && scopes.length > 0) {
+      if (!decoded.role || !scopes.includes(decoded.role)) {
+         throw new Error('Insufficient scope');
+      }
+    }
+
+    return {
+      username: decoded.sub,
+      role: decoded.role
+    };
   }
 }

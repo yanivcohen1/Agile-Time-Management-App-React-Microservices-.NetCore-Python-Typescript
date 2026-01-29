@@ -44,12 +44,12 @@
 					"created_at": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2026-01-29T07:21:14.359Z"
+						"default": "2026-01-29T09:07:27.233Z"
 					},
 					"updated_at": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2026-01-29T07:21:14.359Z"
+						"default": "2026-01-29T09:07:27.234Z"
 					},
 					"user": {
 						"properties": {
