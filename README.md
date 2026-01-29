@@ -24,6 +24,7 @@ The solution consists of four main components:
 
 #### Backend - TypeScript (`backend_typescript_service/`)
 - **Framework:** Express with TypeScript.
+- **API Documentation:** **Tsoa** for automatic Swagger/OpenAPI spec generation.
 - **Database:** MongoDB accessed via **MikroORM** (`src/models/`).
   - Entities are defined using decorators.
   - Database configuration in `appsettings.yml`.
@@ -147,6 +148,8 @@ All commands are run from the `client/` directory using `pnpm`.
 | :--- | :--- | :--- |
 | `serve:ts` | `pnpm dev` | Start TypeScript backend (Dev) |
 | `serve:ts:prod` | `pnpm start` | Start TypeScript backend (Prod) |
+| `tsoa:ts` | `pnpm tsoa` | Regenerate Swagger/OpenAPI spec |
+| `build:ts` | `pnpm build` | Build TypeScript backend |
 | `seed:ts` | `pnpm seed:db` | Seed the TypeScript backend database |
 | `test:ts` | `pnpm test` | Run TypeScript backend tests |
 | `lint:ts` | `pnpm lint` | Lint TypeScript backend code |
