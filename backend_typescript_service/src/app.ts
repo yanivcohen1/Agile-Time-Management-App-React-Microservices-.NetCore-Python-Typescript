@@ -1,16 +1,17 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { RequestContext } from '@mikro-orm/core';
 import { orm } from './config/database';
-import authRouter from './routes/auth';
-import todosRouter from './routes/todos';
-import { authenticate, requireRole } from './middleware/authenticate';
+import { RegisterRoutes } from './routes/routes';
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocument from './public/swagger.json';
 import { errorHandler } from './middleware/errorHandler';
-import { HttpError } from './errors/httpError';
 import { env } from './config/env';
+import multer from 'multer';
 
 const app = express();
+const upload = multer();
 
 app.use(helmet());
 app.use(cors({
@@ -19,39 +20,12 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(upload.none());
 app.use((_req, _res, next) => RequestContext.create(orm.em, next));
 
-app.use('/auth', authRouter);
-app.use('/todos', todosRouter);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
-app.get('/health', (_req: Request, res: Response) => {
-  res.json({ status: 'ok' });
-});
-
-app.get('/user/profile', authenticate, (req: Request, res: Response) => {
-  if (req.user?.role !== 'user') {
-    throw new HttpError(403, 'Access restricted to user role.');
-  }
-
-  res.json({
-    message: 'User profile data',
-    user: {
-      username: req.user?.username,
-      role: req.user?.role
-    }
-  });
-});
-
-app.get('/admin/reports', authenticate, requireRole('admin'), (req: Request, res: Response) => {
-  res.json({
-    message: 'Admin dashboard data',
-    user: {
-      username: req.user?.username,
-      role: req.user?.role
-    }
-  });
-});
+RegisterRoutes(app);
 
 app.use(errorHandler);
 

@@ -85,6 +85,7 @@ The solution consists of four main components:
 *   **Authentication**: JWT
 *   **Testing**: Vitest
 *   **Configuration**: YAML and ENV-based settings
+*   **Swagger**: API Documentation with Swagger
 
 ## 📂 Project Structure
 

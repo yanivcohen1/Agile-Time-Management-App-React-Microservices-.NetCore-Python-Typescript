@@ -15,12 +15,16 @@ A robust Express server written in TypeScript providing comprehensive features f
   - Advanced filtering (status, search, date range).
   - Pagination and sorting support.
   - Status and workload analytics via aggregation pipelines.
+- **API Documentation (Swagger):**
+  - Interactive Swagger UI available at `/docs`.
+  - Powered by **Tsoa** for automatic OpenAPI spec generation.
 - **Security & Reliability:**
   - Helmet for security headers and CORS configuration.
   - Centralized error handling with typed HTTP errors.
   - Health check endpoint at `/health`.
 - **Infrastructure:**
   - MikroORM with MongoDB driver for efficient data access.
+  - **Tsoa** for TypeScript-first API design and Swagger generation.
   - YAML-based configuration (`appsettings.yml`) with environment file overrides.
   - Database seeding for quick development setup.
 
@@ -94,6 +98,25 @@ The following parameters can be set in `.env.development` or `.env.production`:
 pnpm dev
 ```
 By default, this runs in `development` mode using `.env.development`.
+
+## API Documentation
+
+This project uses **Tsoa** to generate an OpenAPI specification and serve it via Swagger UI.
+
+- **Swagger UI:** Accessible at `http://localhost:5000/docs` (when the server is running).
+- **Endpoint Definitions:** Located in `src/controllers/`. Any changes to controllers or models will be reflected in the documentation once regenerated.
+
+### Regenerating API Docs
+
+If you add new routes, controllers, or modify request/response types, you must regenerate the Tsoa routes and OpenAPI spec:
+
+```powershell
+pnpm tsoa
+```
+
+This command runs `tsoa spec-and-routes`, updating the following files:
+- `src/public/swagger.json` (OpenAPI Spec)
+- `src/routes/routes.ts` (Auto-generated Express routes)
 
 ### Production Build
 
