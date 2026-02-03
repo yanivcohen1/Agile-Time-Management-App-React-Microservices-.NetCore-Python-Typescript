@@ -1,0 +1,42 @@
+{
+  "name": "agile-app-react-py-cs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd ./client && pnpm vite",
+    "build": "cd ./client && pnpm tsc -b && pnpm vite build",
+    "preview": "cd ./client && pnpm vite preview",
+    "lint": "cd ./client && pnpm tsc --noEmit --project tsconfig.app.json && pnpm tsc --noEmit --project tsconfig.cypress.json && pnpm eslint . --max-warnings=0",
+    "test": "cd ./client && pnpm vitest run",
+    "test:watch": "cd ./client && pnpm vitest",
+    "coverage": "cd ./client && pnpm vitest run --coverage",
+    "test:e2e": "cd ./client && pnpm cypress run --e2e --browser chrome",
+    "test:e2e:report": "cd ./client && pnpm cross-env CYPRESS_REPORTER=cypress-mochawesome-reporter cypress run --e2e --browser chrome",
+
+    "test:py": "cd ./backend_python_service && .venv\\Scripts\\python -m pytest",
+    "lint:py": "cd ./backend_python_service && .venv\\Scripts\\python -m mypy app",
+    "seed:py": "cd ./backend_python_service && .venv\\Scripts\\python seed.py",
+    "serve:py": "cd ./backend_python_service && .venv\\Scripts\\python -m uvicorn app.main:app --reload --port 5000",
+    "serve:py:prod": "cd ./backend_python_service && cross-env ENV=prod .venv\\Scripts\\python -m uvicorn app.main:app --port 5000",
+    "activate:py": "cd ./backend_python_service && .venv\\Scripts\\activate",
+
+    "seed:cs": "cd ./backend_netCore_service/AuthApi && dotnet run -- --seed",
+    "test:cs": "cd ./backend_netCore_service/AuthApi && dotnet test",
+    "lint:cs": "cd ./backend_netCore_service/AuthApi && dotnet format",
+    "serve:cs": "cd ./backend_netCore_service/AuthApi && dotnet run",
+    "serve:cs:prod": "cd ./backend_netCore_service/AuthApi && dotnet run -- --env prod",
+
+    "seed:ts": "cd ./backend_typescript_service && pnpm seed:db",
+    "test:ts": "cd ./backend_typescript_service && pnpm test",
+    "lint:ts": "cd ./backend_typescript_service && pnpm lint",
+    "serve:ts": "cd ./backend_typescript_service && pnpm dev",
+    "tsoa:ts": "cd ./backend_typescript_service && pnpm tsoa",
+    "build:ts": "cd ./backend_typescript_service && pnpm build",
+    "serve:ts:prod": "cd ./backend_typescript_service && pnpm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.22.0"
+}
