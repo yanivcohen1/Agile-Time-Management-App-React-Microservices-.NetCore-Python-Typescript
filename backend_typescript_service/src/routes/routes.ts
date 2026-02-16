@@ -38,8 +38,8 @@ const models: TsoaRoute.Models = {
             "status": {"ref":"TodoStatus","default":"BACKLOG"},
             "duration": {"dataType":"string"},
             "due_date": {"dataType":"datetime"},
-            "created_at": {"dataType":"datetime","default":"2026-01-29T09:21:20.390Z"},
-            "updated_at": {"dataType":"datetime","default":"2026-01-29T09:21:20.391Z"},
+            "created_at": {"dataType":"datetime","default":"2026-02-16T09:06:39.031Z"},
+            "updated_at": {"dataType":"datetime","default":"2026-02-16T09:06:39.032Z"},
             "user": {"dataType":"nestedObjectLiteral","nestedProperties":{"$ref":{"dataType":"string","required":true},"$id":{"ref":"ObjectId","required":true}},"required":true},
         },
         "additionalProperties": false,
@@ -103,6 +103,16 @@ const models: TsoaRoute.Models = {
         "properties": {
             "username": {"dataType":"string"},
             "password": {"dataType":"string"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RegisterRequestBody": {
+        "dataType": "refObject",
+        "properties": {
+            "email": {"dataType":"string","required":true},
+            "full_name": {"dataType":"string","required":true},
+            "password": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -452,6 +462,36 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'login',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsAuthController_register: Record<string, TsoaRoute.ParameterSchema> = {
+                body: {"in":"body","name":"body","required":true,"ref":"RegisterRequestBody"},
+        };
+        app.post('/auth/register',
+            ...(fetchMiddlewares<RequestHandler>(AuthController)),
+            ...(fetchMiddlewares<RequestHandler>(AuthController.prototype.register)),
+
+            async function AuthController_register(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsAuthController_register, request, response });
+
+                const controller = new AuthController();
+
+              await templateService.apiHandler({
+                methodName: 'register',
                 controller,
                 response,
                 next,

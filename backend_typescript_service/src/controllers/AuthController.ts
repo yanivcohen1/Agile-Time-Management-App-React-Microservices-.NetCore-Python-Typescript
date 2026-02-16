@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { RequestContext } from '@mikro-orm/core';
 import { env, UserRole } from '../config/env';
 import { User } from '../models/User';
-import { comparePassword } from '../lib/password';
+import { comparePassword, hashPassword } from '../lib/password';
 import { orm } from '../config/database';
 import { HttpError } from '../errors/httpError';
 
@@ -18,6 +18,12 @@ interface RequestWithUser extends ExpressRequest {
 interface LoginRequestBody {
   username?: string;
   password?: string;
+}
+
+interface RegisterRequestBody {
+  email: string;
+  full_name: string;
+  password: string;
 }
 
 interface LoginResponse {
@@ -56,6 +62,41 @@ export class AuthController extends Controller {
     if (!user || !(await comparePassword(password, user.password))) {
       throw new HttpError(401, 'Invalid credentials.');
     }
+
+    const access_token = jwt.sign({ sub: user.username, role: user.role }, env.jwtSecret, { expiresIn: env.jwtTtl });
+
+    return {
+      access_token,
+      token_type: 'Bearer',
+      expires_in: env.jwtTtl,
+      role: user.role,
+      name: user.fullName || user.username
+    };
+  }
+
+  @Post('register')
+  public async register(@Body() body: RegisterRequestBody): Promise<LoginResponse> {
+    const { email, full_name, password } = body;
+
+    if (!email || !password) {
+      throw new HttpError(400, 'Email and password are required.');
+    }
+
+    const em = orm.em.fork();
+    const existingUser = await em.findOne(User, { username: email });
+
+    if (existingUser) {
+      throw new HttpError(400, 'User with this email already exists.');
+    }
+
+    const hashedPassword = await hashPassword(password);
+    const user = new User();
+    user.username = email;
+    user.password = hashedPassword;
+    user.fullName = full_name;
+    user.role = 'user';
+
+    await em.persistAndFlush(user);
 
     const access_token = jwt.sign({ sub: user.username, role: user.role }, env.jwtSecret, { expiresIn: env.jwtTtl });
 

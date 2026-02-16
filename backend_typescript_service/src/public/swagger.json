@@ -44,12 +44,12 @@
 					"created_at": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2026-01-29T09:21:20.390Z"
+						"default": "2026-02-16T09:06:39.031Z"
 					},
 					"updated_at": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2026-01-29T09:21:20.391Z"
+						"default": "2026-02-16T09:06:39.032Z"
 					},
 					"user": {
 						"properties": {
@@ -204,6 +204,26 @@
 						"type": "string"
 					}
 				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RegisterRequestBody": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"full_name": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"full_name",
+					"password"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -646,6 +666,38 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/LoginRequestBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/register": {
+			"post": {
+				"operationId": "Register",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoginResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RegisterRequestBody"
 							}
 						}
 					}

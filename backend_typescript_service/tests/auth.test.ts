@@ -112,6 +112,53 @@ describe('Auth routes', () => {
     });
   });
 
+  describe('POST /auth/register', () => {
+    it('successfully registers a new user', async () => {
+      const newUser = {
+        email: `newuser_${Date.now()}@example.com`,
+        full_name: 'New User',
+        password: 'newpassword'
+      };
+
+      const response = await request(app)
+        .post('/auth/register')
+        .send(newUser)
+        .expect(200);
+
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          access_token: expect.any(String),
+          token_type: 'Bearer',
+          role: 'user',
+          name: 'New User'
+        })
+      );
+
+      // Verify user can login
+      await request(app)
+        .post('/auth/login')
+        .send({ username: newUser.email, password: newUser.password })
+        .expect(200);
+    });
+
+    it('rejects registration if user already exists', async () => {
+      const response = await request(app)
+        .post('/auth/register')
+        .send({
+          email: USER_USERNAME,
+          full_name: 'Existing User',
+          password: 'somepassword'
+        })
+        .expect(400);
+
+      expect(response.body).toEqual(
+        expect.objectContaining({
+          detail: 'User with this email already exists.'
+        })
+      );
+    });
+  });
+
   describe('Protected routes', () => {
     it('allows user with user role to access user route', async () => {
       const { token } = await login(USER_USERNAME, USER_PASSWORD);
