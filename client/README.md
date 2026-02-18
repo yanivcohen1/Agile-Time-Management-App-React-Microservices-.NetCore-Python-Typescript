@@ -8,7 +8,7 @@ This is the frontend application for the Time Management App, built with React, 
 *   **UI Libraries**: Material UI (MUI) v5 + PrimeReact v10
 *   **State Management**: React Context API
 *   **Routing**: React Router v6
-*   **Testing**: Vitest (Unit), Cypress (E2E)
+*   **Testing**: Vitest (Unit), Playwright (E2E)
 *   **HTTP Client**: Axios
 
 ## 🏗 Architecture & Patterns
@@ -67,10 +67,16 @@ pnpm test
 `
 
 ### E2E Tests
-Runs end-to-end tests using Cypress.
+Runs end-to-end tests using Playwright.
 
 `ash
 pnpm test:e2e
+`
+
+To run tests with UI mode:
+
+`ash
+pnpm test:e2e:ui
 `
 
 ## ⚙️ Configuration
@@ -87,11 +93,8 @@ The application uses environment variables for configuration.
 
 ```text
 client/
-├── cypress/                # End-to-end testing configuration and tests
-│   ├── e2e/                # E2E test files
-│   ├── reports/            # Test reports
-│   ├── screenshots/        # Screenshots from failed tests
-│   └── support/            # Cypress support files and commands
+├── tests-e2e/              # End-to-end test files
+├── playwright.config.ts    # Playwright configuration
 ├── public/                 # Static assets served directly
 ├── src/                    # Source code
 │   ├── api/                # API client and Axios configuration
@@ -106,7 +109,7 @@ client/
 │   ├── main.tsx            # Application entry point
 │   ├── setupTests.ts       # Test setup configuration
 │   └── theme.ts            # Material UI theme configuration
-├── cypress.config.ts       # Cypress configuration
+├── playwright.config.ts    # Playwright configuration
 ├── eslint.config.js        # ESLint configuration
 ├── index.html              # HTML entry point
 ├── package.json            # Project dependencies and scripts

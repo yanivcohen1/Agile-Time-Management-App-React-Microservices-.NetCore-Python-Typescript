@@ -56,7 +56,7 @@ The solution consists of four main components:
 *   **Routing**: React Router v6 (Nested Routes)
 *   **State Management**: Context API
 *   **Testing**: Vitest + React Testing Library
-*   **E2E Testing**: Cypress
+*   **E2E Testing**: Playwright
 *   **Key Features**:
     *   Dark/Light Theme switching (synced between MUI and PrimeReact)
     *   Responsive Sidebar Drawer (Desktop/Mobile layouts)
@@ -127,8 +127,8 @@ All commands are run from the `client/` directory using `pnpm`.
 | `test` | `vitest run` | Run frontend unit tests |
 | `test:watch` | `vitest` | Run frontend unit tests in watch mode |
 | `coverage` | `vitest run --coverage` | Run frontend tests with coverage report |
-| `test:e2e` | `cypress run ...` | Run E2E tests with Cypress |
-| `test:e2e:report` | `cypress run ...` | Run E2E tests and generate report |
+| `test:e2e` | `playwright test` | Run E2E tests with Playwright |
+| `test:e2e:ui` | `playwright test --ui` | Run E2E tests with Playwright UI |
 
 ### Backend - Python
 | Script | Command | Description |

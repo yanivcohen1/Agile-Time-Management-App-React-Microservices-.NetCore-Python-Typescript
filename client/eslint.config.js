@@ -2,14 +2,15 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import cypress from 'eslint-plugin-cypress'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   globalIgnores([
     'dist',
-    "coverage/**"
+    "coverage/**",
+    "playwright-report/**",
+    "test-results/**"
   ]),
   {
     files: ['**/*.{ts,tsx}'],
@@ -21,7 +22,10 @@ export default defineConfig([
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
@@ -29,23 +33,5 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'error',
       'no-console': 'off',
     },
-  },
-  {
-    files: ['cypress/**/*.cy.{js,ts}'],
-    extends: [cypress.configs.recommended],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: {
-        ...globals.browser,
-        ...globals.mocha,
-        cy: 'readonly',
-        Cypress: 'readonly',
-      },
-    },
-    rules: {
-      'cypress/unsafe-to-chain-command': 'off',
-      'cypress/no-unnecessary-waiting': 'off',
-      'no-undef': 'error',
-    },
-  },
+  }
 ])
