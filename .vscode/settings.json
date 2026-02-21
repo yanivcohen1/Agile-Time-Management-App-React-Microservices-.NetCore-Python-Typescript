@@ -23,6 +23,7 @@
     "python.defaultInterpreterPath": "${workspaceFolder}/backend_python_service/.venv/Scripts/python.exe",
 
     "jest.enable": false,
+    "vitest.enable": true,
     "cypressTestExplorer.configFilePath": "client/cypress.config.ts",
     "cypressTestExplorer.projectPath": "client",
     "cypressTestExplorer.startingFolder": "client/cypress/e2e",
