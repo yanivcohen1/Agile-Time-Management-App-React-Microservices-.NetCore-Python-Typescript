@@ -9,3 +9,5 @@ README2.md
 client/coverage/
 client/cypress/screenshots/
 backend_typescript_service/coverage/
+client/playwright-report/
+client/test-results/
