@@ -36,6 +36,19 @@
                 "uriFormat": "%s",
                 "action": "openExternally"
             }
+        },
+        {
+            "name": "Debug TypeScript Backend",
+            "type": "node",
+            "request": "launch",
+            "runtimeArgs": ["-r", "ts-node/register"],
+            "args": ["${workspaceFolder}/backend_typescript_service/src/server.ts"],
+            "cwd": "${workspaceFolder}/backend_typescript_service",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "integratedTerminal",
+            "sourceMaps": true
         }
     ]
 }
