@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "audit": "pnpm audit",
     "dev": "vite --port 5173",
     "build": "tsc -b && vite build",
     "preview": "vite preview",

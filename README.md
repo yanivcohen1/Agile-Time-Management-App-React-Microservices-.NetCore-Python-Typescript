@@ -115,7 +115,7 @@ Each service has its own detailed setup instructions. Please refer to the respec
 
 ## 📦 Available Scripts
 
-All commands are run from the `client/` directory using `pnpm`.
+All commands are run from the root directory using `pnpm`.
 
 ### Frontend
 | Script | Command | Description |
@@ -124,6 +124,7 @@ All commands are run from the `client/` directory using `pnpm`.
 | `build` | `tsc -b && vite build` | Build the frontend for production |
 | `preview` | `vite preview` | Preview the production build |
 | `lint` | `eslint .` | Lint the frontend code |
+| `audit` | `pnpm audit` | Check for vulnerable dependencies |
 | `test` | `vitest run` | Run frontend unit tests |
 | `test:watch` | `vitest` | Run frontend unit tests in watch mode |
 | `coverage` | `vitest run --coverage` | Run frontend tests with coverage report |
@@ -158,6 +159,7 @@ All commands are run from the `client/` directory using `pnpm`.
 | `seed:ts` | `pnpm seed:db` | Seed the TypeScript backend database |
 | `test:ts` | `pnpm test` | Run TypeScript backend tests |
 | `lint:ts` | `pnpm lint` | Lint TypeScript backend code |
+| `audit:ts` | `pnpm audit` | Check for vulnerable dependencies |
 
 ## 🐛 Debugging
 

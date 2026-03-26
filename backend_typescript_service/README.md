@@ -135,6 +135,7 @@ pnpm start
 - `pnpm lint`: Run linting checks using ESLint and check types.
 - `pnpm test`: Run unit tests once using Vitest.
 - `pnpm test:watch`: Run unit tests in watch mode using Vitest.
+- `pnpm audit`: Checks for vulnerable dependencies.
 
 ## Project Structure
 

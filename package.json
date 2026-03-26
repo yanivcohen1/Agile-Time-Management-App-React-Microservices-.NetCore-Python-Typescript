@@ -8,6 +8,7 @@
     "build": "cd ./client && pnpm build",
     "preview": "cd ./client && pnpm preview",
     "lint": "cd ./client && pnpm lint",
+    "audit": "cd ./client && pnpm audit",
     "test": "cd ./client && pnpm test",
     "test:watch": "cd ./client && pnpm test:watch",
     "coverage": "cd ./client && pnpm coverage",
@@ -34,7 +35,8 @@
     "serve:ts": "cd ./backend_typescript_service && pnpm dev",
     "tsoa:ts": "cd ./backend_typescript_service && pnpm tsoa",
     "build:ts": "cd ./backend_typescript_service && pnpm build",
-    "serve:ts:prod": "cd ./backend_typescript_service && pnpm start"
+    "serve:ts:prod": "cd ./backend_typescript_service && pnpm start",
+    "audit:ts": "cd ./backend_typescript_service && pnpm audit"
   },
   "keywords": [],
   "author": "",

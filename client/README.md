@@ -79,6 +79,15 @@ To run tests with UI mode:
 pnpm test:e2e:ui
 `
 
+## 🔒 Security
+
+### Audit Dependencies
+Checks for vulnerable dependencies in the project.
+
+`ash
+pnpm audit
+`
+
 ## ⚙️ Configuration
 
 The application uses environment variables for configuration.
