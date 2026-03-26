@@ -1,5 +1,5 @@
 Jwt:
-  Key: "prod-super-secret-key-change-in-production"
+  Key: "your-super-secret-key-here-change-in-production"
   Issuer: "AuthApi"
   Audience: "AuthApiUsers"
   ExpirationMinutes: 60
@@ -8,11 +8,11 @@ Database:
   Provider: "MongoDB"  # Options: "MySQL" or "MongoDB"
 
 ConnectionStrings:
-  DefaultConnection: "server=prod-server;port=3306;user=prod-user;password=prod-password;database=prod_netcore_auth;"
-  MongoConnection: "mongodb://prod-server:27017/prod_netcore_auth"
+  DefaultConnection: "server=localhost;port=3306;user=root;password=yanivc77;database=netcore_auth_xunit;"
+  MongoConnection: "mongodb://localhost:27017/react-cs-todo-app"
 
 Server:
-  Urls: "https://localhost:5001"
+  Urls: "http://localhost:5000;https://localhost:5001"
 
 Cors:
-  AllowedOrigins: "https://prod-frontend.com"
+  AllowedOrigins: "http://localhost:3000,http://localhost:3001,http://localhost:4173,http://localhost:5173"

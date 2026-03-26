@@ -11,3 +11,4 @@ client/cypress/screenshots/
 backend_typescript_service/coverage/
 client/playwright-report/
 client/test-results/
+node_modules/
