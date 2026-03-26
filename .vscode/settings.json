@@ -27,4 +27,8 @@
     "cypressTestExplorer.configFilePath": "client/cypress.config.ts",
     "cypressTestExplorer.projectPath": "client",
     "cypressTestExplorer.startingFolder": "client/cypress/e2e",
+
+    "terminal.integrated.env.windows": {
+        "PATH": "${env:PATH};${env:NVM_SYMLINK}"
+    }
 }
