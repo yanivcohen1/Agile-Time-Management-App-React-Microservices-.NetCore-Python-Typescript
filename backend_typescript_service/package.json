@@ -5,6 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "audit": "pnpm audit",
+    "clean": "rimraf dist",
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only src/server.ts",
     "tsoa": "tsoa spec-and-routes",
     "build": "pnpm tsoa && tsc -p tsconfig.build.json",
@@ -57,6 +58,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^8.57.1",
     "mongodb-memory-server": "^10.4.3",
+    "rimraf": "^6.1.3",
     "supertest": "^6.3.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",

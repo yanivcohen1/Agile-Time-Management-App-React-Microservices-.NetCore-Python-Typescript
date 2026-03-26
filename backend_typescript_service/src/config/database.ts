@@ -1,6 +1,5 @@
-import { MikroORM } from '@mikro-orm/core';
+import { MikroORM, ReflectMetadataProvider } from '@mikro-orm/core';
 import { MongoDriver } from '@mikro-orm/mongodb';
-import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { env } from './env';
 import { User } from '../models/User';
 import { Todo } from '../models/Todo';
@@ -10,7 +9,7 @@ export let orm: MikroORM<MongoDriver>;
 export async function connectDatabase(): Promise<void> {
   try {
     orm = await MikroORM.init<MongoDriver>({
-      metadataProvider: TsMorphMetadataProvider,
+      metadataProvider: ReflectMetadataProvider,
       entities: [User, Todo],
       clientUrl: env.mongoUri,
       dbName: env.mongoDb,
